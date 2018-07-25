@@ -8,12 +8,11 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
-	var socketId = socket.id;
-  	var clientIp = socket.request.connection.remoteAddress;
+  	var ip = socket.conn.remoteAddress;
 
-	console.log('New connection from: ' , clientIp);
+	console.log('New connection from: ' , ip);
     socket.on('chat message', function(msg){
-    io.emit('chat message', clientIp + ': ' + msg);
+    io.emit('chat message', ip + ': ' + msg);
   });
 });
 
